@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINGO</title>
+  
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3ae37;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .jumbotron {
+      background-color: #ffffff;
+      color: #f3ae37;
+    }
+    .song-list {
+      margin-top: 20px;
+    }
+    .song-card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">MINGO</h1>
+      <p class="lead">노래 제목 또는 가수를 입력하세요.</p>
+      <form id="musicForm">
+        <div class="form-group">
+          <label for="titleInput">노래 제목:</label>
+          <input type="text" class="form-control" id="titleInput" placeholder="노래 제목을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="artistInput">가수:</label>
+          <input type="text" class="form-control" id="artistInput" placeholder="가수를 입력하세요">
+        </div>
+        <button type="submit" class="btn btn-primary">검색</button>
+      </form>
+    </div>
+    <div id="songList" class="song-list">
+      <!-- 검색된 노래 목록은 여기에 추가됩니다. -->
+    </div>
+  </div>
+
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // 폼 제출 시 실행되는 함수
+    document.getElementById('musicForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // 기본 동작 중지
+
+      // 사용자 입력값 가져오기
+      var title = document.getElementById('titleInput').value;
+      var artist = document.getElementById('artistInput').value;
+
+      // 여기서는 간단히 콘솔에 출력하는 것으로 대체합니다.
+      console.log('노래 제목:', title);
+      console.log('가수:', artist);
+
+      // 웹 스크롤링 결과를 가져와서 보여주는 함수 호출
+      displaySearchResults(title, artist);
+    });
+
+    // 웹 스크롤링 결과를 가져와서 화면에 보여주는 함수
+    function displaySearchResults(title, artist) {
+      var songListDiv = document.getElementById('songList');
+      songListDiv.innerHTML = ''; // 이전에 표시된 목록 지우기
+
+      // 여기서는 간단히 목록을 만들어서 추가하는 것으로 대체합니다.
+      var songs = [
+        { title: '노래 제목 1', artist: '아티스트 1', link: '#' },
+        { title: '노래 제목 2', artist: '아티스트 2', link: '#' },
+        { title: '노래 제목 3', artist: '아티스트 3', link: '#' }
+      ];
+
+      songs.forEach(function(song) {
+        var songCard = document.createElement('div');
+        songCard.classList.add('card', 'song-card');
+        songCard.innerHTML = `
+          <div class="card-body">
+            <h5 class="card-title">${song.title}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${song.artist}</h6>
+            <a href="${song.link}" class="card-link" target="_blank">재생하기</a>
+          </div>
+        `;
+        songListDiv.appendChild(songCard);
+      });
+    }
+  </script>
+</body>
+</html>
